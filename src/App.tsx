@@ -13,12 +13,12 @@ const App: React.FC = () => {
 
   const handleGenerate = (data: {
     name: string;
-    ageInMonths: number;
+    age: string;
     wakeUpTime: string;
   }) => {
-    const result = generateSchedule(data.ageInMonths, data.wakeUpTime);
+    const result = generateSchedule(data.age, data.wakeUpTime);
     if ("error" in result) {
-      setError(result.error);
+      setError(error);
       setSchedule(null);
     } else {
       setSchedule({ ...result, name: data.name });

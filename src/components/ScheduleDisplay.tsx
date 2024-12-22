@@ -2,7 +2,7 @@ import React from "react";
 
 interface ScheduleDisplayProps {
   schedule: { name: string; napTimes: string[]; bedtime: string } | null;
-  error?: string;
+  error: string;
 }
 
 const ScheduleDisplay: React.FC<ScheduleDisplayProps> = ({

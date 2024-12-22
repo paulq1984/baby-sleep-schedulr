@@ -1,6 +1,16 @@
 import sleepSchedules from "../data/sleepSchedules";
 
-export const generateSchedule = (ageInMonths: number, wakeUpTime: string) => {
+const parseAge = (age: string): number | null => {
+  const match = age.match(/(\d+)\s*months?/i);
+  return match ? parseInt(match[1], 10) : null;
+};
+
+export const generateSchedule = (age: string, wakeUpTime: string) => {
+  const ageInMonths = parseAge(age);
+  if (ageInMonths === null) {
+    return { error: "Invalid age format. Please use 'X months'." };
+  }
+
   const schedule = sleepSchedules.find(
     (item) => item.ageInMonths === ageInMonths
   );
@@ -11,7 +21,6 @@ export const generateSchedule = (ageInMonths: number, wakeUpTime: string) => {
 
   const { naps, wakeTime, sleepTime } = schedule;
 
-  // Convert wake-up time to a Date object
   const wakeUpDate = new Date(`1970-01-01T${wakeUpTime}`);
   const napTimes = Array.from({ length: naps }, (_, i) => {
     const napStart = new Date(wakeUpDate);

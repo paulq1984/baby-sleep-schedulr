@@ -1,11 +1,7 @@
 import React, { useState } from "react";
 
 interface AgeInputProps {
-  onSubmit: (data: {
-    name: string;
-    ageInMonths: number;
-    wakeUpTime: string;
-  }) => void;
+  onSubmit: (data: { name: string; age: string; wakeUpTime: string }) => void;
 }
 
 const AgeInput: React.FC<AgeInputProps> = ({ onSubmit }) => {
@@ -35,11 +31,10 @@ const AgeInput: React.FC<AgeInputProps> = ({ onSubmit }) => {
       <div>
         <label htmlFor='age'>Baby's Age (in months): </label>
         <input
-          type='number'
+          type='text'
           id='age'
           value={age}
-          onChange={(e) => setAge(Number(e.target.value))}
-          min='0'
+          onChange={(e) => setAge(e.target.value)}
           required
         />
       </div>
